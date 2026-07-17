@@ -95,6 +95,7 @@ body {
     display: flex;
     overflow-x: hidden;
     line-height: 1.6;
+    zoom: 0.85; /* Reduce la escala general para que se vea más pequeño */
 }
 
 h1, h2, h3, h4, h5 {
