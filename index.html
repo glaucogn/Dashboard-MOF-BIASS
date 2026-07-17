@@ -444,9 +444,9 @@ ${mof.funcionesSecundarias && mof.funcionesSecundarias.length > 0 ? `
     
     <!-- Employee Form Modal Overlay -->
     <div id="employee-modal-overlay" class="mof-detail-overlay hidden">
-        <div class="employee-modal-container" style="background:var(--bg-secondary); border:1px solid var(--border-glass); border-radius:var(--radius-lg); padding:24px; max-width:500px; width:90%; position:relative; box-shadow:var(--shadow-lg);">
-            <button id="employee-modal-close" class="mof-detail-close">×</button>
-            <h2 id="employee-modal-title" style="margin-bottom: 20px; color:var(--text-primary);">Nuevo Empleado</h2>
+        <div class="mof-detail-container" style="max-width: 500px; padding:24px;">
+            <button class="mof-detail-close" onclick="document.getElementById('employee-modal-overlay').classList.add('hidden')">×</button>
+            <h2 id="employee-modal-title" style="margin-bottom:20px; color:var(--text-primary);">Nuevo Empleado</h2>
             <form id="employee-form" style="display:flex; flex-direction:column; gap:16px;">
                 <input type="hidden" id="emp-original-id">
                 <div class="form-group" style="display:flex; flex-direction:column; gap:4px;">

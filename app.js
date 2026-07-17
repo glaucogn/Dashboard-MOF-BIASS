@@ -2138,13 +2138,13 @@ function renderStaffDirectory() {
                 <p>Gestiona y consulta la información de los empleados asignados a cada puesto del MOF.</p>
             </div>
             <div style="display:flex; gap:12px;">
+                <button class="btn btn-primary" onclick="openEmployeeModal()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px; vertical-align:text-bottom;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Nuevo Empleado
+                </button>
                 <button class="btn btn-success" onclick="exportStaffToExcel()">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px; vertical-align:text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                     Exportar Excel
-                </button>
-                <button class="btn btn-primary" onclick="openEmployeeModal()">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px; vertical-align:text-bottom;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                    Nuevo Empleado
                 </button>
             </div>
         </div>
@@ -2274,11 +2274,9 @@ function renderStaffCards(staff) {
                         <span>${formatDate(emp.fechaIngreso)} <span class="staff-antiguedad">(${getAntiguedad(emp.fechaIngreso)})</span></span>
                     </div>
                 </div>
-                <div class="staff-card-footer" style="justify-content: space-between;">
-                    <div style="display:flex; gap:8px;">
-                        <button class="staff-mof-link" onclick="openEmployeeModal('${emp.id}')" title="Editar">✏️</button>
-                        <button class="staff-mof-link" onclick="deleteEmployee('${emp.id}')" title="Eliminar" style="color:var(--accent-rose)">🗑️</button>
-                    </div>
+                <div class="staff-card-footer" style="justify-content: flex-end; gap: 8px;">
+                    <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="openEmployeeModal('${emp.id}')" title="Editar">Editar</button>
+                    <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-rose); border-color:var(--accent-rose);" onclick="deleteEmployee('${emp.id}')" title="Eliminar">Eliminar</button>
                     <button class="staff-mof-link" onclick="openMOFDetail('${emp.puestoId}')" title="Ver MOF del puesto">
                         Ver MOF →
                     </button>
@@ -2366,8 +2364,8 @@ function renderStaffTable(staff) {
                 <td><span class="staff-status-badge" style="background:${status.bg};color:${status.color};border:1px solid ${status.border}">${status.icon} ${status.label}</span></td>
                 <td>
                     <div style="display:flex; gap:8px;">
-                        <button class="staff-mof-link" onclick="openEmployeeModal('${emp.id}')" title="Editar">✏️</button>
-                        <button class="staff-mof-link" onclick="deleteEmployee('${emp.id}')" title="Eliminar" style="color:var(--accent-rose)">🗑️</button>
+                        <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="openEmployeeModal('${emp.id}')" title="Editar">Editar</button>
+                        <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-rose); border-color:var(--accent-rose);" onclick="deleteEmployee('${emp.id}')" title="Eliminar">Eliminar</button>
                         <button class="staff-mof-link" onclick="openMOFDetail('${emp.puestoId}')">MOF →</button>
                     </div>
                 </td>
