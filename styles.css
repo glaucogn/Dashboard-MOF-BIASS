@@ -83,7 +83,7 @@ body.light-theme {
 }
 
 html {
-    font-size: 16px;
+    font-size: 14px; /* Reducción general de fuentes */
     scroll-behavior: smooth;
 }
 
@@ -95,7 +95,6 @@ body {
     display: flex;
     overflow-x: hidden;
     line-height: 1.6;
-    zoom: 0.85; /* Reduce la escala general para que se vea más pequeño */
 }
 
 h1, h2, h3, h4, h5 {
@@ -558,7 +557,7 @@ h1, h2, h3, h4, h5 {
 
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
 }
 
