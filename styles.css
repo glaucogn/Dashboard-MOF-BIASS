@@ -5,16 +5,16 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #111827;
-    --bg-card: rgba(17, 24, 39, 0.7);
-    --bg-glass: rgba(255, 255, 255, 0.04);
-    --bg-glass-hover: rgba(255, 255, 255, 0.08);
-    --border-glass: rgba(255, 255, 255, 0.08);
+    --bg-primary: #05070e;
+    --bg-secondary: #0d121c;
+    --bg-card: rgba(17, 24, 39, 0.4);
+    --bg-glass: rgba(255, 255, 255, 0.03);
+    --bg-glass-hover: rgba(255, 255, 255, 0.07);
+    --border-glass: rgba(255, 255, 255, 0.06);
     --border-glass-hover: rgba(255, 255, 255, 0.15);
 
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
     --text-muted: #64748b;
 
     --accent-blue: #3b82f6;
@@ -123,14 +123,17 @@ h1, h2, h3, h4, h5 {
    ============================================ */
 .sidebar {
     width: var(--sidebar-width);
-    height: 100vh;
     position: fixed;
-    left: 0;
-    top: 0;
+    left: 16px;
+    top: 16px;
+    bottom: 16px;
     z-index: 100;
-    background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(10, 14, 26, 0.98) 100%);
-    backdrop-filter: blur(20px);
-    border-right: 1px solid var(--border-glass);
+    background: rgba(13, 18, 28, 0.65);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), var(--shadow-lg);
     display: flex;
     flex-direction: column;
     transition: transform var(--transition-slow);
@@ -191,6 +194,8 @@ h1, h2, h3, h4, h5 {
     list-style: none;
     padding: 16px 12px;
     flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .nav-item {
@@ -257,11 +262,12 @@ h1, h2, h3, h4, h5 {
    MAIN CONTENT
    ============================================ */
 .main-content {
-    margin-left: var(--sidebar-width);
+    margin-left: calc(var(--sidebar-width) + 32px);
     flex: 1;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-bottom: 32px; /* Espacio extra al final para que no choque con el fondo */
 }
 
 /* --- Top Bar --- */
@@ -2351,4 +2357,185 @@ h1, h2, h3, h4, h5 {
     color: var(--text-primary);
     margin-top: 12px;
     resize: vertical;
+}
+
+/* ============================================
+   MESH GRADIENT BACKGROUNDS
+   ============================================ */
+.mesh-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+body.light-theme .mesh-bg {
+    opacity: 0.15;
+}
+
+.mesh-bg-1 {
+    background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.4) 0%, transparent 40%);
+    animation: float1 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mesh-bg-2 {
+    background: radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%);
+    animation: float2 25s infinite alternate-reverse cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mesh-bg-3 {
+    background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.2) 0%, transparent 30%);
+    animation: float3 22s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes float1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10%, 15%) scale(1.1); }
+    100% { transform: translate(-10%, 5%) scale(0.9); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-15%, -10%) scale(1.2); }
+    100% { transform: translate(10%, -20%) scale(0.8); }
+}
+
+@keyframes float3 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-20%, 20%) scale(0.9); }
+    100% { transform: translate(20%, -10%) scale(1.1); }
+}
+
+/* Enhancing Glassmorphism in Cards */
+.stat-card, .staff-card, .mof-detail-container {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), var(--shadow-sm);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+}
+
+.staff-table-wrapper {
+    background: var(--bg-card);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-glass);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), var(--shadow-md);
+    overflow-x: auto;
+}
+
+.staff-table tbody tr {
+    transition: background-color var(--transition-normal), transform var(--transition-fast);
+}
+
+.staff-table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    transform: translateX(4px);
+}
+
+/* ============================================
+   UNIVERSAL GLASS SWEEP HOVER EFFECT
+   ============================================ */
+.stat-card, 
+.staff-card, 
+.area-card, 
+.mof-card,
+.mof-detail-container, 
+.eval-form,
+.print-mof {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.stat-card::after, 
+.staff-card::after, 
+.area-card::after,
+.mof-card::after,
+.mof-detail-container::after, 
+.eval-form::after,
+.print-mof::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -150% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+    transform: skewX(-20deg) !important;
+    transition: all 0.6s ease !important;
+    pointer-events: none !important;
+    z-index: 5 !important;
+    opacity: 1 !important;
+}
+
+.stat-card:hover::after, 
+.staff-card:hover::after, 
+.area-card:hover::after,
+.mof-card:hover::after,
+.mof-detail-container:hover::after, 
+.eval-form:hover::after,
+.print-mof:hover::after {
+    left: 150% !important;
+}
+
+.stat-card:hover, 
+.area-card:hover {
+    background: var(--bg-glass-hover) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Specific styling for Manuales and Directorio cards without elevation */
+.mof-card:hover,
+.staff-card:hover {
+    background: var(--bg-glass-hover) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(0) scale(1) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), var(--shadow-sm) !important;
+}
+
+/* ============================================
+   BIASS LOGO ENHANCEMENT
+   ============================================ */
+.sidebar .logo {
+    position: relative;
+    border: 1px solid rgba(245, 158, 11, 0.4) !important;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.15), inset 0 0 10px rgba(245, 158, 11, 0.1);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.sidebar .logo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(245, 158, 11, 0.3) 25%, transparent 50%);
+    animation: rotateGold 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sidebar .logo > svg {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes rotateGold {
+    100% { transform: rotate(360deg); }
+}
+
+.sidebar .logo:hover {
+    border-color: rgba(245, 158, 11, 0.8);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.2);
 }
